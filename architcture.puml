@@ -1,0 +1,13 @@
+@startuml
+start
+:SysInit
+Clock;
+:Init USART;
+:Init Temp Device;
+:Init Kernel;
+:Add Task USART;
+:Add Task Temp;
+:Start Kernel;
+:While;
+stop
+@enduml
