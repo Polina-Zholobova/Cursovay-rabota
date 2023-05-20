@@ -1,0 +1,118 @@
+[plantuml]
+
+----
+class ITread
+{
+  + Execute(): void
+}
+
+ITread <|-- TempTask
+ITread <|-- UsartTask
+
+
+class Gpio_TypeDef
+{
+    - MODER: uint32_t
+    - OTYPER: uint32_t
+    - OSPEEDR: uint32_t
+    - PUPDR: uint32_t
+    - IDR: uint32_t
+    - ODR: uint32_t
+    - BSRR: uint32_t
+    - LCKR: uint32_t
+    - AFR: uint32_t
+    - BRR: uint32_t
+    + GPIO_TypeDef()
+}
+
+class DHT_data
+{
+    - hum : float
+    - temp : float
+    + DHT_data()
+}
+
+class DHT_sensor
+{
+    - DHT_Port: GPIO_TypeDef
+    - DHT_Pin: uint16_t
+    - type: DHT_type
+    - pullUp: uint8_t
+    - lastTemp: float
+    - lastTemp: float
+    - data: DHT_data
+    + DHT_sensor()
+}
+
+DHT_sensor o-- Gpio_TypeDef
+DHT_sensor o-- DHT_data
+
+class DigitalFilter
+{
+    - R: double
+    - C: double
+    - tau: double
+    + DigitalFilter(R: double, C: double, tau: double)
+    + Filter(oldValues: double*, lenOldValues: uint16_t, double newValue) : double
+}
+
+class iFilter
+{
+    + Filter(oldValues: double*, lenOldValues: uint16_t, double newValue): double
+}
+
+class TempDevice
+{
+    - sensor: DHT_sensor
+    - filter: iFilter*
+    - oldValueTemp: double*
+    - newValueTemp: double
+    - oldValueHum: double*
+    - newValueHum: double
+    + TempDevice()
+    + getTemp(): double
+    + gerHum(): double
+}
+
+
+TempDevice o-- DHT_sensor
+TempDevice *-- DigitalFilter
+DigitalFilter -.|> iFilter
+
+class TempTask
+{
+    - _parametr:  TempDevice
+    + TempTask(parametr: TempDevice)
+}
+
+TempTask o-- TempDevice
+
+class iUsart
+{
+    + Send(msg: char*): void
+}
+
+class UsartUser
+{
+    + UsartUser()
+    + Init(): void
+    + Send(msg: char*): void
+}
+
+class UsartTask
+{
+    - _parametr:  UsartTask
+    + UsartTask(parametr: UsartTask)
+}
+
+UsartTask o-- UsartUser
+UsartUser -.|> iUsart
+
+
+
+----
+
+
+
+
+
