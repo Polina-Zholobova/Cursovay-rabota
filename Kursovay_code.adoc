@@ -1,0 +1,567 @@
+---
+title: Код курсового проекта
+---
+:toc-title: Содержание
+:toc:
+
+= Глава 3.
+
+== main.cpp
+
+/*----------------------------------------------------------------------------
+* CMSIS-RTOS 'main' function template
+*---------------------------------------------------------------------------*/
+
+#include "RTE_Components.h"
+#include  CMSIS_device_header
+#include "cmsis_os2.h"
+
+#include "TempDevice.h"
+#include "UsartUser.h"
+
+void UART_Init (void);
+
+volatile uint8_t t;
+unsigned int i;
+void delay () {
+
+   for (i=0;i<1000000;i++);
+
+}
+
+/*----------------------------------------------------------------------------
+* Application main thread
+*---------------------------------------------------------------------------*/
+
+int ClockInit(void)
+{
+
+  __IO int StartUpCounter;
+
+  RCC->CR |= (1<<RCC_CR_HSEON_Pos);
+
+  for(StartUpCounter=0; ; StartUpCounter++)
+  {
+    if(RCC->CR & (1<<RCC_CR_HSERDY_Pos))
+      break;
+
+    if(StartUpCounter > 0x1000)
+    {
+      RCC->CR &= ~(1<<RCC_CR_HSEON_Pos);
+      return 1;
+    }
+  }
+
+  RCC->CFGR |= (0x07<<RCC_CFGR_PLLMUL_Pos)
+            | (0x01<<RCC_CFGR_PLLSRC_Pos);
+
+
+  RCC->CR |= (1<<RCC_CR_PLLON_Pos);
+
+  for(StartUpCounter=0; ; StartUpCounter++)
+  {
+
+    if(RCC->CR & (1<<RCC_CR_PLLRDY_Pos))
+      break;
+
+    if(StartUpCounter > 0x1000)
+    {
+      RCC->CR &= ~(1<<RCC_CR_HSEON_Pos);
+      RCC->CR &= ~(1<<RCC_CR_PLLON_Pos);
+      return 2;
+    }
+  }
+
+  FLASH->ACR |= (0x02<<FLASH_ACR_LATENCY_Pos);
+
+  RCC->CFGR |= (0x00<<RCC_CFGR_PPRE2_Pos)
+            | (0x04<<RCC_CFGR_PPRE1_Pos)
+            | (0x00<<RCC_CFGR_HPRE_Pos);
+
+
+  RCC->CFGR |= (0x02<<RCC_CFGR_SW_Pos);
+
+
+  while((RCC->CFGR & RCC_CFGR_SWS_Msk) != (0x02<<RCC_CFGR_SWS_Pos))
+  {
+  }
+
+  RCC->CR &= ~(1<<RCC_CR_HSION_Pos);
+
+  return 0;
+
+}
+
+
+char msg[7];
+
+static double temperatureGlobal = 0;
+
+
+void ConvertTemperatureToString(const double t)
+{
+
+     int16_t temperature = (int16_t)(t * 10);
+
+	uint16_t indx = 0;
+	if (temperature < 0) {
+		msg[indx++]= '-';
+	}
+
+	msg[indx++]= temperature/1000 + '0';
+	msg[indx++]= temperature/100 + '0';
+	msg[indx++]= temperature/10 % 10 + '0';
+	msg[indx++] = ',';
+	msg[indx++]= temperature%  10 + '0';
+	msg[indx++]= '0';
+
+}
+
+__NO_RETURN static void TempTask( void *arg )
+{
+(void)arg;
+
+	TempDevice _parametr;
+	for (;;)
+    {
+		osDelay(1000);
+		temperatureGlobal = _parametr.getTemp();
+		ConvertTemperatureToString(temperatureGlobal);
+	}
+
+}
+
+__NO_RETURN static void UsartTask( void *arg )
+{
+
+    (void)arg;
+    UsartUser _parametr;
+    _parametr.Init();
+    for (;;)
+    {
+       osDelay(3000);
+       _parametr.Send(msg);
+    }
+
+}
+
+int main (void) {
+
+   int a = ClockInit();
+   SystemCoreClockUpdate();
+   osKernelInitialize();
+   osThreadNew(TempTask, NULL, NULL);
+   osThreadNew(UsartTask, NULL, NULL);
+   osKernelStart();
+
+   for (;;) {
+   }
+
+}
+
+== iFilter.h
+
+#pragma once
+
+#include "stdint.h"
+
+class iFilter
+{
+public:
+
+   virtual double Filter(double* oldValues, uint16_t lenOldValues, double newValue) = 0;
+
+};
+
+== iUsart.h
+
+#pragma once
+
+class iUsart
+{
+
+   virtual void Send(char* msg) = 0;
+
+};
+
+
+== UsartUser.h
+#pragma once
+
+#include "iUsart.h"
+
+class UsartUser : public iUsart
+{
+
+  public:
+  UsartUser();
+  void Init();
+  void Send(char* msg);
+};
+
+== UsartUser.cpp
+
+
+#include "UsartUser.h"
+#include "RTE_Components.h"
+#include  CMSIS_device_header
+#include "cmsis_os2.h"
+
+UsartUser::UsartUser()
+{
+
+}
+
+void UsartUser::Init()
+{
+
+  RCC->APB1ENR |= RCC_APB1ENR_UART4EN;
+  RCC->AHBENR|=RCC_AHBENR_GPIOCEN;
+  GPIOC->MODER |= GPIO_MODER_MODER10_1;
+  GPIOC->OTYPER &= ~GPIO_OTYPER_OT_10;
+  GPIOC->PUPDR &= ~GPIO_PUPDR_PUPDR10;
+  GPIOC->PUPDR |= GPIO_PUPDR_PUPDR10_0;
+  GPIOC->OSPEEDR |= GPIO_OSPEEDER_OSPEEDR10;
+  GPIOC->AFR[1]|=(0x05<<(4*2));
+
+ GPIOC->MODER |= GPIO_MODER_MODER11_1;
+ GPIOC->PUPDR &= ~GPIO_PUPDR_PUPDR11;
+ GPIOC->AFR[1]|=(0x05<<(4*3));
+
+ UART4->BRR = 7500;
+ UART4->CR1|=USART_CR1_UE|USART_CR1_TE|USART_CR1_RE;
+ UART4->CR1|=USART_CR1_RXNEIE;
+
+}
+
+void UsartUser::Send(char* msg)
+{
+
+  uint8_t i = 0;
+  while(msg[i]) {
+  while (!(UART4->ISR & USART_ISR_TC));
+     UART4->TDR = msg[i];
+  }
+
+}
+
+== DigitalFilter.h
+#pragma once
+#include "iFilter.h"
+
+class DigitalFilter : public iFilter
+{
+
+ public:
+   DigitalFilter(double R, double C, double tau);
+   double Filter(double* oldValues, uint16_t lenOldValues, double newValue);
+   private:
+   double R;
+   double C;
+   double tau;
+
+};
+
+== DigitalFilter.cpp
+
+
+#include "DigitalFilter.h"
+#include "math.h"
+
+
+DigitalFilter::DigitalFilter(double R, double C, double tau)
+{
+
+    this->R = R;
+    this->C = C;
+    this->tau = tau;
+
+}
+
+double DigitalFilter::Filter(double* oldValues, uint16_t lenOldValues, double newValue)
+{
+
+    static double t = 0;
+    double filteredValue = 0;
+    double k = 0;
+
+	if (lenOldValues == 1) {
+		if (t > 0) {
+			k = R * C;
+			tau = exp(- t / k);
+			filteredValue = oldValues[0] - (newValue - oldValues[0]) * tau;
+		} else {
+			filteredValue = newValue;
+		}
+	}
+
+	t += 0.1;
+
+	return filteredValue;
+
+}
+
+
+== DHT_sensor.h
+
+#pragma once
+#include "stm32f303xc.h"
+
+#define DHT_TIMEOUT 				10000
+#define DHT_POLLING_CONTROL			1
+#define DHT_POLLING_INTERVAL_DHT11	2000
+#define DHT_POLLING_INTERVAL_DHT22	1000
+#define DHT_IRQ_CONTROL
+
+#define GPIO_MODE_Pos                           0u
+#define OUTPUT_TYPE_Pos                         4u
+#define MODE_OUTPUT                             (0x1uL << GPIO_MODE_Pos)
+#define OUTPUT_OD                               (0x1uL << OUTPUT_TYPE_Pos)
+#define  GPIO_MODE_OUTPUT_OD                    (MODE_OUTPUT | OUTPUT_OD)
+
+#define MODE_INPUT                              (0x0uL << GPIO_MODE_Pos)
+#define  GPIO_MODE_INPUT                        MODE_INPUT
+
+#define  GPIO_SPEED_FREQ_HIGH     (0x00000003U)
+
+
+struct DHT_data
+{
+
+    float hum;
+    float temp;
+
+};
+
+typedef enum {
+
+    DHT11,
+    DHT22
+
+} DHT_type;
+
+class DHT_sensor
+{
+
+ public:
+    DHT_sensor();
+    DHT_data DHT_getData();
+ private:
+	GPIO_TypeDef* DHT_Port;
+	uint16_t DHT_Pin;
+	DHT_type type;
+	uint8_t pullUp;
+	uint32_t lastPollingTime;
+	float lastTemp;
+	float lastHum;
+};
+
+== DHT_sensor.cpp
+
+#include "DHT_sensor.h"
+
+
+DHT_sensor::DHT_sensor()
+{
+}
+
+
+DHT_data DHT_sensor::DHT_getData()
+{
+
+  DHT_data data = {-128.0f, -128.0f};
+
+
+  uint16_t pollingInterval;
+  if (type == DHT11) {
+      pollingInterval = DHT_POLLING_INTERVAL_DHT11;
+  } else {
+      pollingInterval = DHT_POLLING_INTERVAL_DHT22;
+  }
+
+  if ((lastPollingTime < pollingInterval) && lastPollingTime != 0) {
+      data.hum = lastHum;
+      data.temp = lastTemp;
+      return data;
+  }
+
+  GPIO_InitTypeDef GPIO_InitStruct = {0};
+  GPIO_InitStruct.Pin = DHT_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_OD;
+  GPIO_InitStruct.Pull = pullUp;
+
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
+
+
+  GPIO_InitStruct.Pin = DHT_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = pullUp;
+
+
+	#ifdef DHT_IRQ_CONTROL
+
+	__disable_irq();
+	#endif
+
+	uint16_t timeout = 0;
+
+	while(true) {
+		timeout++;
+		if (timeout > DHT_TIMEOUT) {
+			#ifdef DHT_IRQ_CONTROL
+			__enable_irq();
+			#endif
+
+			lastHum = -128.0f;
+			lastTemp = -128.0f;
+
+			return data;
+		}
+	}
+	timeout = 0;
+
+	while(true) {
+		timeout++;
+		if (timeout > DHT_TIMEOUT) {
+			#ifdef DHT_IRQ_CONTROL
+			__enable_irq();
+			#endif
+
+			lastHum = -128.0f;
+			lastTemp = -128.0f;
+
+			return data;
+		}
+	}
+	timeout = 0;
+	while(true) {
+		timeout++;
+		if (timeout > DHT_TIMEOUT) {
+			#ifdef DHT_IRQ_CONTROL
+			__enable_irq();
+			#endif
+			return data;
+		}
+	}
+
+	uint8_t rawData[5] = {0,0,0,0,0};
+	for(uint8_t a = 0; a < 5; a++) {
+		for(uint8_t b = 7; b != 255; b--) {
+			uint16_t hT = 0, lT = 0;
+			while(lT != 65535) lT++;
+			timeout = 0;
+			while(hT != 65535) hT++;
+			if(hT > lT) rawData[a] |= (1<<b);
+		}
+	}
+
+    #ifdef DHT_IRQ_CONTROL
+	__enable_irq();
+    #endif
+
+	if((uint8_t)(rawData[0] + rawData[1] + rawData[2] + rawData[3]) == rawData[4]) {
+		if (type == DHT22) {
+			data.hum = (float)(((uint16_t)rawData[0]<<8) | rawData[1])*0.1f;
+			if(!(rawData[2] & (1<<7))) {
+				data.temp = (float)(((uint16_t)rawData[2]<<8) | rawData[3])*0.1f;
+			}	else {
+				rawData[2] &= ~(1<<7);
+				data.temp = (float)(((uint16_t)rawData[2]<<8) | rawData[3])*-0.1f;
+			}
+		}
+		if (type == DHT11) {
+			data.hum = (float)rawData[0];
+			data.temp = (float)rawData[2] + ((float)rawData[3] * 0.1);
+		}
+	}
+
+	#if DHT_POLLING_CONTROL == 1
+	lastHum = data.hum;
+	lastTemp = data.temp;
+	#endif
+
+	return data;
+
+}
+
+== TempDevice.h
+
+#pragma once
+
+#include "DHT_sensor.h"
+#include "DigitalFilter.h"
+
+#define GPIO_PIN_0          ((uint16_t)0x0001U)
+#define  GPIO_NOPULL        (0x00000000U)
+
+class TempDevice
+{
+
+  public:
+     TempDevice();
+     double getTemp();
+     double getHum();
+
+  private:
+     DHT_sensor sensor;
+     iFilter* filter;
+     double* oldValueTemp;
+     double newValueTemp;
+     double* oldValueHum;
+     double newValueHum;
+
+};
+
+
+== TempDevice.cpp
+
+#include "TempDevice.h"
+
+#define filtrR 		10000.0l
+#define filtrC 		0.005l
+#define filtrTau 	1.0
+
+
+
+TempDevice::TempDevice()
+{
+
+    filter = new DigitalFilter(filtrR, filtrC, filtrTau);
+    oldValueTemp = new double(1);
+    oldValueHum = new double(1);
+    oldValueTemp[0] = 0;
+    oldValueHum[0] = 0;
+
+	sensor.DHT_Port = GPIOD;
+	sensor.DHT_Pin = GPIO_PIN_0;
+	sensor.type = DHT11;
+	sensor.pullUp = GPIO_NOPULL;
+
+}
+
+double TempDevice::getTemp()
+{
+
+   oldValueTemp[0] = newValueTemp;
+   newValueTemp 		= (double)sensor.DHT_getData().temp;
+   return filter->Filter(oldValueTemp, 1, newValueTemp);
+
+}
+
+double TempDevice::getHum()
+{
+
+   oldValueHum[0] = newValueHum;
+   newValueHum 		= (double)sensor.DHT_getData().hum;
+   return filter->Filter(oldValueHum, 1, newValueHum);
+
+}
+
+
+
+
+
+
+
+
+
