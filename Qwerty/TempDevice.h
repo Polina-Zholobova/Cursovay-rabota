@@ -10,16 +10,24 @@
 class TempDevice
 {
 public:
-	TempDevice();
-	double getTemp();
-	double getHum();
+        TempDevice(IFilter& temFiler, IFilter& humFilter);
+	void updateTemp();
+        auto getTemp()
+        {
+          return _temperatureValue;
+        }
+        void updateHum();
+	auto getHum()
+        {
+          return _humidityValue;
+        }
+
 	
 private:
-	DHT_sensor sensor;
-	iFilter* filter;
-	double* oldValueTemp;
-	double newValueTemp;
-	double* oldValueHum;
-	double newValueHum;
+	DHT_sensor _sensor;
+	iFilter& _humFilter;
+        iFilter& _tempFilter;
+	double _temperatureValue;
+	double _humidityValue;
 	
 };

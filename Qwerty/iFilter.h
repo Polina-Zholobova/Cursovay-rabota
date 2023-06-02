@@ -6,5 +6,5 @@
 class iFilter 
 {
 public:
-		virtual double Filter(double* oldValues, uint16_t lenOldValues, double newValue) = 0;
+   virtual double Filter(double newValue) = 0;
 };

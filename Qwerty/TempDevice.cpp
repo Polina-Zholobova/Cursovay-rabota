@@ -6,26 +6,23 @@
 
 
 
-TempDevice::TempDevice()
+TempDevice::TempDevice(IFilter& temFiler, IFilter& humFilter) :
+                                                              _humFilter(humFilter),
+                                                              _tempFilter(tempFilter)
 {
-	filter = new DigitalFilter(filtrR, filtrC, filtrTau);
-	oldValueTemp = new double(1);
-	oldValueHum = new double(1);
-	oldValueTemp[0] = 0;
-	oldValueHum[0] = 0;
 }
 
-double TempDevice::getTemp()
+void TempDevice::updateTemp()
 {
-	oldValueTemp[0] = newValueTemp;
-	newValueTemp 		= (double)sensor.DHT_getData().temp;
-	//return newValueTemp;
-	return filter->Filter(oldValueTemp, 1, newValueTemp);
+
+   const auto temp = (double)sensor.DHT_getData().temp;
+   core_util_critical_section_enter();
+   _temperatureValue =  _tempFilter->Filter(temp);
+   core_util_critical_section_exit()
 }
 
-double TempDevice::getHum()
+void TempDevice::updateHum()
 {
-	oldValueHum[0] = newValueHum;
-	newValueHum 		= (double)sensor.DHT_getData().hum;
-	return filter->Filter(oldValueHum, 1, newValueHum);
+	const var hum = (double)sensor.DHT_getData().hum;
+        _humidityValue = _humFilter->Filter(hum);
 }
