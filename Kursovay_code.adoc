@@ -14,170 +14,170 @@ title: Код курсового проекта
  *---------------------------------------------------------------------------*/
 
 #include "RTE_Components.h"
-#include  CMSIS_device_header
+#include CMSIS_device_header
 #include "cmsis_os2.h"
 
 #include "TempDevice.h"
 #include "UsartUser.h"
 
-void UART_Init (void);
+void UART_Init(void);
 
 volatile uint8_t t;
 unsigned int i;
-void delay () {
-     for (i=0;i<1000000;i++);
+void delay() {
+  for (i = 0; i < 1000000; i++)
+    ;
 }
 
 /*----------------------------------------------------------------------------
  * Application main thread
  *---------------------------------------------------------------------------*/
 
-int ClockInit(void)
-{
+int ClockInit(void) {
   __IO int StartUpCounter;
 
-  RCC->CR |= (1<<RCC_CR_HSEON_Pos);
+  RCC->CR |= (1 << RCC_CR_HSEON_Pos);
 
-  for(StartUpCounter=0; ; StartUpCounter++)
-  {
-    if(RCC->CR & (1<<RCC_CR_HSERDY_Pos))
+  for (StartUpCounter = 0;; StartUpCounter++) {
+    if (RCC->CR & (1 << RCC_CR_HSERDY_Pos))
       break;
 
-    if(StartUpCounter > 0x1000)
-    {
-      RCC->CR &= ~(1<<RCC_CR_HSEON_Pos);
+    if (StartUpCounter > 0x1000) {
+      RCC->CR &= ~(1 << RCC_CR_HSEON_Pos);
       return 1;
     }
   }
 
-  RCC->CFGR |= (0x07<<RCC_CFGR_PLLMUL_Pos)
-            | (0x01<<RCC_CFGR_PLLSRC_Pos);
+  RCC->CFGR |= (0x07 << RCC_CFGR_PLLMUL_Pos) | (0x01 << RCC_CFGR_PLLSRC_Pos);
 
+  RCC->CR |= (1 << RCC_CR_PLLON_Pos);
 
-  RCC->CR |= (1<<RCC_CR_PLLON_Pos);
+  for (StartUpCounter = 0;; StartUpCounter++) {
 
-  for(StartUpCounter=0; ; StartUpCounter++)
-  {
-
-    if(RCC->CR & (1<<RCC_CR_PLLRDY_Pos))
+    if (RCC->CR & (1 << RCC_CR_PLLRDY_Pos))
       break;
 
-    if(StartUpCounter > 0x1000)
-    {
-      RCC->CR &= ~(1<<RCC_CR_HSEON_Pos);
-      RCC->CR &= ~(1<<RCC_CR_PLLON_Pos);
+    if (StartUpCounter > 0x1000) {
+      RCC->CR &= ~(1 << RCC_CR_HSEON_Pos);
+      RCC->CR &= ~(1 << RCC_CR_PLLON_Pos);
       return 2;
     }
   }
 
-  FLASH->ACR |= (0x02<<FLASH_ACR_LATENCY_Pos);
+  FLASH->ACR |= (0x02 << FLASH_ACR_LATENCY_Pos);
 
-  RCC->CFGR |= (0x00<<RCC_CFGR_PPRE2_Pos)
-            | (0x04<<RCC_CFGR_PPRE1_Pos)
-            | (0x00<<RCC_CFGR_HPRE_Pos);
+  RCC->CFGR |= (0x00 << RCC_CFGR_PPRE2_Pos) | (0x04 << RCC_CFGR_PPRE1_Pos) |
+               (0x00 << RCC_CFGR_HPRE_Pos);
 
+  RCC->CFGR |= (0x02 << RCC_CFGR_SW_Pos);
 
-  RCC->CFGR |= (0x02<<RCC_CFGR_SW_Pos);
-
-  while((RCC->CFGR & RCC_CFGR_SWS_Msk) != (0x02<<RCC_CFGR_SWS_Pos))
+  while ((RCC->CFGR & RCC_CFGR_SWS_Msk) != (0x02 << RCC_CFGR_SWS_Pos))
 
   {
   }
 
-  RCC->CR &= ~(1<<RCC_CR_HSION_Pos);
+  RCC->CR &= ~(1 << RCC_CR_HSION_Pos);
 
   return 0;
 }
 
 
-char msg[21];
-static double temperatureGlobal = 0;
-void ConvertTemperatureToString(const double t)
-{
-	int16_t temperature = (int16_t)(t * 10);
+DigitalFilter temperatureFilter(1.0);
+DigitalFilter humidityFilter(1.0);
 
-	uint16_t indx = 0;
+TempDevice temperatureClass(humidityFilter, temperatureFilter);
 
-	msg[indx++]= 'T';
-	msg[indx++]= 'e';
-	msg[indx++]= 'm';
-	msg[indx++]= 'p';
-	msg[indx++]= 'e';
-	msg[indx++]= 'r';
-	msg[indx++]= 'a';
-	msg[indx++]= 't';
-	msg[indx++]= 'u';
-	msg[indx++]= 'r';
-	msg[indx++]= 'e';
-	msg[indx++]= ':';
-	msg[indx++]= ' ';
+void ConvertTemperatureToString(const double t, char *msg, int size) {
+  int16_t temperature = (int16_t)(t * 10);
 
-	if (temperature < 0) {
-		msg[indx++]= '-';
-	}
+  uint16_t indx = 0;
+  constexpr int MaxIdx = 22;
 
-	msg[indx++]= temperature/1000 + '0';
-	msg[indx++]= temperature/100 + '0';
-	msg[indx++]= temperature/10 % 10 + '0';
-	msg[indx++] = ',';
-	msg[indx++]= temperature%  10 + '0';
-	msg[indx++]= '0';
-	msg[indx++]= '\n';
+  //assert(size < MaxIdx);
+	size = (size < MaxIdx) ? size : MaxIdx;
+
+  msg[indx++] = 'T';
+  msg[indx++] = 'e';
+  msg[indx++] = 'm';
+  msg[indx++] = 'p';
+  msg[indx++] = 'e';
+  msg[indx++] = 'r';
+  msg[indx++] = 'a';
+  msg[indx++] = 't';
+  msg[indx++] = 'u';
+  msg[indx++] = 'r';
+  msg[indx++] = 'e';
+  msg[indx++] = ':';
+  msg[indx++] = ' ';
+
+  if (temperature < 0) {
+    msg[indx++] = '-';
+  }
+
+  msg[indx++] = temperature / 1000 + '0';
+  msg[indx++] = temperature / 100 + '0';
+  msg[indx++] = temperature / 10 % 10 + '0';
+  msg[indx++] = ',';
+  msg[indx++] = temperature % 10 + '0';
+  msg[indx++] = '0';
+  msg[indx++] = '\n';
 }
 
 
-bool isReadTemp = false;
-bool isSendMsg  = false;
-__NO_RETURN static void TempTask( void *arg )
+__NO_RETURN static void TempTask(void *arg)
 {
-	(void)arg;
+  (void)arg;
 
-	TempDevice _parametr;
-	for (;;)
+  for (;;)
   {
-		osDelay(1000);
-		if (isSendMsg == false) {
-			isReadTemp = true;
-			temperatureGlobal = _parametr.getTemp();
-			ConvertTemperatureToString(temperatureGlobal);
-		}
-		isReadTemp = false;
-	}
+    osDelay(852);
+    temperatureClass.updateTemp();
+    temperatureClass.updateHum();
+  }
 }
 
-__NO_RETURN static void UsartTask( void *arg )
+__NO_RETURN static void UsartTask(void *arg)
 {
-	(void)arg;
-	UsartUser _parametr;
-	_parametr.Init();
-	int a = 0;
+  //(void)arg;
+  constexpr int MaxMessageSize = 22;
+  char msg[MaxMessageSize];
+  UsartUser _parametr;
+  _parametr.Init();
+  TempDevice& temp = (TempDevice &)* arg;
+  int a = 0;
 
-	for (;;)
-  {
-		osDelay(3000);
-		if (isReadTemp == false) {
-			isSendMsg = true;
-			_parametr.Send(msg);
-		}
-		isSendMsg = false;
-	}
+  for (;;) {
+    osDelay(3000);
+
+    double _temperature = 0.0;
+		double _hum = 0.0;
+
+    //core_util_critical_section_enter();
+		__disable_irq();
+    _temperature = temp.getTemp();
+    _hum				 = temp.getHum();
+		//core_util_critical_section_exit();
+		__enable_irq();
+
+    ConvertTemperatureToString(_temperature, msg, MaxMessageSize);
+    _parametr.Send(msg);
+  }
 }
 
 
-int main (void) {
 
+int main(void) {
 
-	int a = ClockInit();
-	SystemCoreClockUpdate();
+  int a = ClockInit();
+  SystemCoreClockUpdate();
 
   osKernelInitialize();
   osThreadNew(TempTask, NULL, NULL);
-	osThreadNew(UsartTask, NULL, NULL);
+  osThreadNew(UsartTask, &temperatureClass, NULL);
   osKernelStart();
 
-
   for (;;) {
-	}
+  }
 }
 
 ----
@@ -192,8 +192,7 @@ int main (void) {
 class iFilter
 {
 public:
-		virtual double Filter(double* oldValues,
-uint16_t lenOldValues, double newValue) = 0;
+   virtual double Filter(double newValue) = 0;
 };
 ----
 == iUsart.h
@@ -306,14 +305,13 @@ void UsartUser::Send(char* msg)
 class DigitalFilter : public iFilter
 {
 public:
-	DigitalFilter(double R, double C, double tau);
-	double Filter(double* oldValues, uint16_t lenOldValues,
-double newValue);
+	DigitalFilter(double timeConstant);
+	double Filter(double newValue);
 private:
-	double R;
-	double C;
-	double tau;
-};
+	double _tau;
+	double _oldValue = 0.0;
+}
+
 ----
 
 == DigitalFilter.cpp
@@ -323,35 +321,23 @@ private:
 #include "DigitalFilter.h"
 #include "math.h"
 
+constexpr int DampingTime = 10.0;
 
-DigitalFilter::DigitalFilter(double R, double C, double tau)
+DigitalFilter::DigitalFilter(double timeConstant) :  _tau( exp(- DampingTime / (timeConstant) ))
 {
-	this->R = R;
-	this->C = C;
-	this->tau = tau;
 }
 
-double DigitalFilter::Filter(double* oldValues,
-uint16_t lenOldValues, double newValue)
+double DigitalFilter::Filter(double newValue)
 {
-	static double t = 0;
-	double filteredValue = 0;
-	double k = 0;
+		static double filteredValue = UINT32_MAX;
 
-	if (lenOldValues == 1) {
-		if (t > 0) {
-			k = R * C;
-			tau = exp(- t / k);
-			filteredValue = oldValues[0] +
-(newValue - oldValues[0]) * tau;
-		} else {
-			filteredValue = newValue;
-		}
-	}
-
-	t += 0.1;
-
-	return filteredValue;
+    if (filteredValue != UINT32_MAX) {
+				filteredValue = _oldValue + (newValue - _oldValue) * _tau;
+    } else {
+				filteredValue = newValue;
+    }
+    _oldValue = filteredValue;
+    return filteredValue;
 }
 
 ----
@@ -587,24 +573,33 @@ rawData[4]) {
 
 #include "DHT_sensor.h"
 #include "DigitalFilter.h"
+#include "iFilter.h"
 
 #define GPIO_PIN_0          ((uint16_t)0x0001U)
-#define  GPIO_NOPULL        (0x00000000U)
+#define GPIO_NOPULL         (0x00000000U)
 
 class TempDevice
 {
 public:
-	TempDevice();
-	double getTemp();
-	double getHum();
+	TempDevice(iFilter& tempFiler, iFilter& humFilter);
+	void updateTemp();
+	auto getTemp() -> double
+	{
+		return _temperatureValue;
+	}
+	void updateHum();
+	auto getHum() -> double
+	{
+		return _humidityValue;
+	}
+
 
 private:
-	DHT_sensor sensor;
-	iFilter* filter;
-	double* oldValueTemp;
-	double newValueTemp;
-	double* oldValueHum;
-	double newValueHum;
+	DHT_sensor _sensor;
+	iFilter& _humFilter;
+  iFilter& _tempFilter;
+	double _temperatureValue;
+	double _humidityValue;
 
 };
 ----
@@ -617,29 +612,28 @@ private:
 #define filtrC 		0.005l
 #define filtrTau 	1.0
 
-
-
-TempDevice::TempDevice()
+TempDevice::TempDevice(iFilter& tempFilter, iFilter& humFilter) :
+                                                              _humFilter(humFilter),
+                                                              _tempFilter(tempFilter)
 {
-	filter = new DigitalFilter(filtrR, filtrC, filtrTau);
-	oldValueTemp = new double(1);
-	oldValueHum = new double(1);
-	oldValueTemp[0] = 0;
-	oldValueHum[0] = 0;
 }
 
-double TempDevice::getTemp()
+void TempDevice::updateTemp()
 {
-	oldValueTemp[0] = newValueTemp;
-	newValueTemp 		= (double)sensor.DHT_getData().temp;
-	//return newValueTemp;
-	return filter->Filter(oldValueTemp, 1, newValueTemp);
+   const auto temp = (double)_sensor.DHT_getData().temp;
+	//core_util_critical_section_enter();
+	__disable_irq();
+   _temperatureValue =  _tempFilter.Filter(temp);
+	__enable_irq();
 }
 
-double TempDevice::getHum()
+void TempDevice::updateHum()
 {
-	oldValueHum[0] = newValueHum;
-	newValueHum 		= (double)sensor.DHT_getData().hum;
-	return filter->Filter(oldValueHum, 1, newValueHum);
+	const auto hum = (double)_sensor.DHT_getData().hum;
+	//core_util_critical_section_enter();
+	__disable_irq();
+	_humidityValue = _humFilter.Filter(hum);
+	//core_util_critical_section_exit();
+	__enable_irq();
 }
 ----
