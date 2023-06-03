@@ -272,10 +272,6 @@ class TempDevice
     - _tempFilter: iFilter&
 	- _temperatureValue: double
 	- _humidityValue: double
-    + TempDevice()
-    + getTemp(): double
-    + gerHum(): double
-
     + TempDevice( tempFiler: iFilter&, humFilter: iFilter&)
 	+ updateTemp(): void
 	+ getTemp(): auto
