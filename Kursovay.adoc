@@ -228,22 +228,6 @@ class ITread
 ITread <|-- TempTask
 ITread <|-- UsartTask
 
-
-class Gpio_TypeDef
-{
-    - MODER: uint32_t
-    - OTYPER: uint32_t
-    - OSPEEDR: uint32_t
-    - PUPDR: uint32_t
-    - IDR: uint32_t
-    - ODR: uint32_t
-    - BSRR: uint32_t
-    - LCKR: uint32_t
-    - AFR: uint32_t
-    - BRR: uint32_t
-    + GPIO_TypeDef()
-}
-
 class DHT_data
 {
     - hum : float
@@ -253,9 +237,6 @@ class DHT_data
 
 class DHT_sensor
 {
-    - lastTemp: float
-    - lastHum: float
-    - data: DHT_data
     - initGpio() : void
     - goToOutput() : void
 	- goToInput() : void
@@ -263,6 +244,9 @@ class DHT_sensor
 	- lineUp() : void
     - getLine() : bool
     + DHT_sensor()
+    + DHT_getData(): DHT_data
+	+ lastTemp: float
+	+ lastHum: float
 }
 
 DHT_sensor o-- Gpio_TypeDef
@@ -270,11 +254,10 @@ DHT_sensor o-- DHT_data
 
 class DigitalFilter
 {
-    - R: double
-    - C: double
-    - tau: double
-    + DigitalFilter(R: double, C: double, tau: double)
-    + Filter(oldValues: double*, lenOldValues: uint16_t, double newValue) : double
+   	- _tau: double
+	- _oldValue: double
+    + DigitalFilter(timeConstant: double)
+    + Filter(newValue: double): double
 }
 
 class iFilter
@@ -284,15 +267,21 @@ class iFilter
 
 class TempDevice
 {
-    - sensor: DHT_sensor
-    - filter: iFilter*
-    - oldValueTemp: double*
-    - newValueTemp: double
-    - oldValueHum: double*
-    - newValueHum: double
+	- _sensor: DHT_sensor
+	- _humFilter: iFilter&
+    - _tempFilter: iFilter&
+	- _temperatureValue: double
+	- _humidityValue: double
     + TempDevice()
     + getTemp(): double
     + gerHum(): double
+
+    + TempDevice( tempFiler: iFilter&, humFilter: iFilter&)
+	+ updateTemp(): void
+	+ getTemp(): auto
+	+ updateHum(): void
+	+ getHum(): auto
+
 }
 
 

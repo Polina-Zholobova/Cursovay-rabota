@@ -84,7 +84,6 @@ void ConvertTemperatureToString(const double t, char *msg, int size) {
 
   //assert(size < MaxIdx);
 	size = (size < MaxIdx) ? size : MaxIdx;
->>>>>>>>> Temporary merge branch 2
 
   msg[indx++] = 'T';
   msg[indx++] = 'e';
