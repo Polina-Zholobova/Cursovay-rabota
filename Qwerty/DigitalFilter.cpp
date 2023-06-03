@@ -13,7 +13,7 @@ DigitalFilter::DigitalFilter(double timeConstant) :  _tau( exp(- DampingTime / (
 double DigitalFilter::Filter(double newValue)
 {
 		static double filteredValue = UINT32_MAX;
-	
+
     if (filteredValue != UINT32_MAX) {
 				filteredValue = _oldValue + (newValue - _oldValue) * _tau;
     } else {
