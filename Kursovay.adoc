@@ -253,13 +253,15 @@ class DHT_data
 
 class DHT_sensor
 {
-    - DHT_Port: GPIO_TypeDef
-    - DHT_Pin: uint16_t
-    - type: DHT_type
-    - pullUp: uint8_t
     - lastTemp: float
     - lastHum: float
     - data: DHT_data
+    - initGpio() : void
+    - goToOutput() : void
+	- goToInput() : void
+	- lineDown() : void
+	- lineUp() : void
+    - getLine() : bool
     + DHT_sensor()
 }
 

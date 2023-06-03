@@ -5,11 +5,11 @@
 <h2>Tool Versions:</h2>
 IDE-Version: µVision V5.38.0.0
 Copyright (C) 2022 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: Dmitriy cheetos, cheetos, LIC=----
+License Information: Cheetos Windows, HP Inc., LIC=----
  
 Tool Versions:
 Toolchain:       MDK-Lite  Version: 5.38.0.0
-Toolchain Path:  D:\stm32\ARM\ARMCLANG\Bin
+Toolchain Path:  C:\Keil_v5\ARM\ARMCLANG\Bin
 C Compiler:      ArmClang.exe V6.19
 Assembler:       Armasm.exe V6.19
 Linker/Locator:  ArmLink.exe V6.19
@@ -21,88 +21,60 @@ Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.1.0.0
 Dialog DLL:      TCM.DLL V1.56.4.0
  
 <h2>Project:</h2>
-D:\stm32\projects\MDK\Boards\ST\STM32F3-Discovery\Qwerty\Qwerty.uvprojx
+C:\Games\Cursovay-rabota\Qwerty\Qwerty.uvprojx
 Project File Date:  05/26/2023
 
 <h2>Output:</h2>
-*** Using Compiler 'V6.19', folder: 'D:\stm32\ARM\ARMCLANG\Bin'
+*** Using Compiler 'V6.19', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Build target 'Target 1'
-TempDevice.cpp(1): warning: In file included from...
-./TempDevice.h(4): warning: In file included from...
-./DHT_sensor.h(3): warning: In file included from...
-D:/stm32/ARM/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f303xc.h(144): warning: commas at the end of enumerator lists are incompatible with C++98 [-Wc++98-compat-pedantic]
-  FPU_IRQn                    = 81,      /*!< Floating point Interrupt                                          */
-                                  ^~
-TempDevice.cpp(1): warning: In file included from...
-./TempDevice.h(4): warning: In file included from...
-./DHT_sensor.h(84): warning: C++98 requires newline at end of file [-Wc++98-compat-pedantic]
-}GPIO_InitTypeDef;
-                  ^
-TempDevice.cpp(1): warning: In file included from...
-./TempDevice.h(5): warning: In file included from...
-./DigitalFilter.h(3): warning: In file included from...
-./iFilter.h(6): warning: 'iFilter' has virtual functions but non-virtual destructor [-Wnon-virtual-dtor]
-class iFilter 
-      ^
-./iFilter.h(10): warning: C++98 requires newline at end of file [-Wc++98-compat-pedantic]
-};
-  ^
-TempDevice.cpp(1): warning: In file included from...
-./TempDevice.h(5): warning: In file included from...
-./DigitalFilter.h(12): warning: default member initializer for non-static data members is incompatible with C++98 [-Wc++98-compat]
-        double _oldValue = 0.0;
-                         ^
-./DigitalFilter.h(5): warning: 'DigitalFilter' has virtual functions but non-virtual destructor [-Wnon-virtual-dtor]
-class DigitalFilter : public iFilter
-      ^
-./DigitalFilter.h(9): warning: 'Filter' overrides a member function but is not marked 'override' [-Wsuggest-override]
-        double Filter(double newValue);
-               ^
-./iFilter.h(9): note: overridden virtual function is here
-   virtual double Filter(double newValue) = 0;
-                  ^
-TempDevice.cpp(1): warning: In file included from...
-./TempDevice.h(5): warning: In file included from...
-./DigitalFilter.h(13): warning: C++98 requires newline at end of file [-Wc++98-compat-pedantic]
-};
-  ^
-TempDevice.cpp(1): warning: In file included from...
-./TempDevice.h(16): warning: trailing return types are incompatible with C++98 [-Wc++98-compat]
-        auto getTemp() -> double
-                       ^
-./TempDevice.h(21): warning: trailing return types are incompatible with C++98 [-Wc++98-compat]
-        auto getHum() -> double
-                      ^
-./TempDevice.h(34): warning: C++98 requires newline at end of file [-Wc++98-compat-pedantic]
-};
-  ^
-TempDevice.cpp(15): warning: 'auto' type specifier is incompatible with C++98 [-Wc++98-compat]
-   const auto temp = (double)_sensor.DHT_getData().temp;
-         ^~~~
-TempDevice.cpp(15): warning: use of old-style cast [-Wold-style-cast]
-   const auto temp = (double)_sensor.DHT_getData().temp;
-                     ^       ~~~~~~~~~~~~~~~~~~~~~~~~~~
-TempDevice.cpp(24): warning: 'auto' type specifier is incompatible with C++98 [-Wc++98-compat]
-        const auto hum = (double)_sensor.DHT_getData().hum;
-              ^~~~
-TempDevice.cpp(24): warning: use of old-style cast [-Wold-style-cast]
-        const auto hum = (double)_sensor.DHT_getData().hum;
-                         ^       ~~~~~~~~~~~~~~~~~~~~~~~~~
-TempDevice.cpp(30): warning: C++98 requires newline at end of file [-Wc++98-compat-pedantic]
-}
- ^
-16 warnings generated.
-compiling TempDevice.cpp...
-main.c(6): warning: In file included from...
-D:/stm32/ARM/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f3xx.h(11): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+Timer.c(12): warning: unused parameter 'arg' [-Wunused-parameter]
+static void Timer1_Callback (void const *arg) {
+                                         ^
+Timer.c(21): warning: unused parameter 'arg' [-Wunused-parameter]
+static void Timer2_Callback (void const *arg) {
+                                         ^
+Timer.c(26): warning: no previous prototype for function 'Init_Timers' [-Wmissing-prototypes]
+int Init_Timers (void) {
+    ^
+Timer.c(26): note: declare 'static' if the function is not intended to be used outside of this translation unit
+int Init_Timers (void) {
+^
+static 
+Timer.c(8): warning: no previous extern declaration for non-static variable 'tim_id1' [-Wmissing-variable-declarations]
+osTimerId_t tim_id1;                            // timer id
+            ^
+Timer.c(8): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+osTimerId_t tim_id1;                            // timer id
+^
+Timer.c(17): warning: no previous extern declaration for non-static variable 'tim_id2' [-Wmissing-variable-declarations]
+osTimerId_t tim_id2;                            // timer id
+            ^
+Timer.c(17): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+osTimerId_t tim_id2;                            // timer id
+^
+5 warnings generated.
+compiling Timer.c...
+C:/Users/polin/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/RTOS2/RTX/Source/rtx_delay.c(26): warning: In file included from...
+C:/Users/polin/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/RTOS2/RTX/Source/rtx_lib.h(31): warning: In file included from...
+C:/Users/polin/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/RTOS2/RTX/Source/rtx_core_c.h(33): warning: In file included from...
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f3xx.h(11): warning: invalid UTF-8 in comment [-Winvalid-utf8]
   *              - To use or not the peripheral<92>s drivers in application code(i.e. 
                                                ^
-D:/stm32/ARM/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f3xx.h(12): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f3xx.h(12): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+  *                code will be based on direct access to peripheral<92>s registers 
+                                                                    ^
+2 warnings generated.
+compiling rtx_delay.c...
+main.c(6): warning: In file included from...
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f3xx.h(11): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+  *              - To use or not the peripheral<92>s drivers in application code(i.e. 
+                                               ^
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f3xx.h(12): warning: invalid UTF-8 in comment [-Winvalid-utf8]
   *                code will be based on direct access to peripheral<92>s registers 
                                                                     ^
 main.c(6): warning: In file included from...
-D:/stm32/ARM/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f3xx.h(136): warning: In file included from...
-D:/stm32/ARM/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f303xc.h(144): warning: commas at the end of enumerator lists are incompatible with C++98 [-Wc++98-compat-pedantic]
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f3xx.h(136): warning: In file included from...
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f303xc.h(144): warning: commas at the end of enumerator lists are incompatible with C++98 [-Wc++98-compat-pedantic]
   FPU_IRQn                    = 81,      /*!< Floating point Interrupt                                          */
                                   ^~
 main.c(9): warning: In file included from...
@@ -185,19 +157,19 @@ static
 main.c(28): warning: use of old-style cast [-Wold-style-cast]
   RCC->CR |= (1 << RCC_CR_HSEON_Pos);
   ^~~
-D:/stm32/ARM/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f303xc.h(869): note: expanded from macro 'RCC'
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f303xc.h(869): note: expanded from macro 'RCC'
 #define RCC                 ((RCC_TypeDef *) RCC_BASE)
                              ^               ~~~~~~~~
 main.c(31): warning: use of old-style cast [-Wold-style-cast]
     if (RCC->CR & (1 << RCC_CR_HSERDY_Pos))
         ^~~
-D:/stm32/ARM/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f303xc.h(869): note: expanded from macro 'RCC'
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f303xc.h(869): note: expanded from macro 'RCC'
 #define RCC                 ((RCC_TypeDef *) RCC_BASE)
                              ^               ~~~~~~~~
 main.c(35): warning: use of old-style cast [-Wold-style-cast]
       RCC->CR &= ~(1 << RCC_CR_HSEON_Pos);
       ^~~
-D:/stm32/ARM/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f303xc.h(869): note: expanded from macro 'RCC'
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f303xc.h(869): note: expanded from macro 'RCC'
 #define RCC                 ((RCC_TypeDef *) RCC_BASE)
                              ^               ~~~~~~~~
 main.c(35): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
@@ -206,25 +178,25 @@ main.c(35): warning: implicit conversion changes signedness: 'int' to 'unsigned 
 main.c(40): warning: use of old-style cast [-Wold-style-cast]
   RCC->CFGR |= (0x07 << RCC_CFGR_PLLMUL_Pos) | (0x01 << RCC_CFGR_PLLSRC_Pos);
   ^~~
-D:/stm32/ARM/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f303xc.h(869): note: expanded from macro 'RCC'
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f303xc.h(869): note: expanded from macro 'RCC'
 #define RCC                 ((RCC_TypeDef *) RCC_BASE)
                              ^               ~~~~~~~~
 main.c(42): warning: use of old-style cast [-Wold-style-cast]
   RCC->CR |= (1 << RCC_CR_PLLON_Pos);
   ^~~
-D:/stm32/ARM/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f303xc.h(869): note: expanded from macro 'RCC'
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f303xc.h(869): note: expanded from macro 'RCC'
 #define RCC                 ((RCC_TypeDef *) RCC_BASE)
                              ^               ~~~~~~~~
 main.c(46): warning: use of old-style cast [-Wold-style-cast]
     if (RCC->CR & (1 << RCC_CR_PLLRDY_Pos))
         ^~~
-D:/stm32/ARM/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f303xc.h(869): note: expanded from macro 'RCC'
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f303xc.h(869): note: expanded from macro 'RCC'
 #define RCC                 ((RCC_TypeDef *) RCC_BASE)
                              ^               ~~~~~~~~
 main.c(50): warning: use of old-style cast [-Wold-style-cast]
       RCC->CR &= ~(1 << RCC_CR_HSEON_Pos);
       ^~~
-D:/stm32/ARM/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f303xc.h(869): note: expanded from macro 'RCC'
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f303xc.h(869): note: expanded from macro 'RCC'
 #define RCC                 ((RCC_TypeDef *) RCC_BASE)
                              ^               ~~~~~~~~
 main.c(50): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
@@ -233,7 +205,7 @@ main.c(50): warning: implicit conversion changes signedness: 'int' to 'unsigned 
 main.c(51): warning: use of old-style cast [-Wold-style-cast]
       RCC->CR &= ~(1 << RCC_CR_PLLON_Pos);
       ^~~
-D:/stm32/ARM/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f303xc.h(869): note: expanded from macro 'RCC'
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f303xc.h(869): note: expanded from macro 'RCC'
 #define RCC                 ((RCC_TypeDef *) RCC_BASE)
                              ^               ~~~~~~~~
 main.c(51): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
@@ -242,31 +214,31 @@ main.c(51): warning: implicit conversion changes signedness: 'int' to 'unsigned 
 main.c(56): warning: use of old-style cast [-Wold-style-cast]
   FLASH->ACR |= (0x02 << FLASH_ACR_LATENCY_Pos);
   ^~~~~
-D:/stm32/ARM/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f303xc.h(870): note: expanded from macro 'FLASH'
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f303xc.h(870): note: expanded from macro 'FLASH'
 #define FLASH               ((FLASH_TypeDef *) FLASH_R_BASE)
                              ^                 ~~~~~~~~~~~~
 main.c(58): warning: use of old-style cast [-Wold-style-cast]
   RCC->CFGR |= (0x00 << RCC_CFGR_PPRE2_Pos) | (0x04 << RCC_CFGR_PPRE1_Pos) |
   ^~~
-D:/stm32/ARM/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f303xc.h(869): note: expanded from macro 'RCC'
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f303xc.h(869): note: expanded from macro 'RCC'
 #define RCC                 ((RCC_TypeDef *) RCC_BASE)
                              ^               ~~~~~~~~
 main.c(61): warning: use of old-style cast [-Wold-style-cast]
   RCC->CFGR |= (0x02 << RCC_CFGR_SW_Pos);
   ^~~
-D:/stm32/ARM/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f303xc.h(869): note: expanded from macro 'RCC'
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f303xc.h(869): note: expanded from macro 'RCC'
 #define RCC                 ((RCC_TypeDef *) RCC_BASE)
                              ^               ~~~~~~~~
 main.c(63): warning: use of old-style cast [-Wold-style-cast]
   while ((RCC->CFGR & RCC_CFGR_SWS_Msk) != (0x02 << RCC_CFGR_SWS_Pos))
           ^~~
-D:/stm32/ARM/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f303xc.h(869): note: expanded from macro 'RCC'
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f303xc.h(869): note: expanded from macro 'RCC'
 #define RCC                 ((RCC_TypeDef *) RCC_BASE)
                              ^               ~~~~~~~~
 main.c(68): warning: use of old-style cast [-Wold-style-cast]
   RCC->CR &= ~(1 << RCC_CR_HSION_Pos);
   ^~~
-D:/stm32/ARM/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f303xc.h(869): note: expanded from macro 'RCC'
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f303xc.h(869): note: expanded from macro 'RCC'
 #define RCC                 ((RCC_TypeDef *) RCC_BASE)
                              ^               ~~~~~~~~
 main.c(68): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
@@ -361,21 +333,21 @@ main.c(164): warning: zero as null pointer constant [-Wzero-as-null-pointer-cons
   osThreadNew(TempTask, NULL, NULL);
                         ^~~~
                         nullptr
-D:\stm32\ARM\ARMCLANG\Bin\..\include\stddef.h(84): note: expanded from macro 'NULL'
+C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stddef.h(84): note: expanded from macro 'NULL'
 #define NULL 0
              ^
 main.c(164): warning: zero as null pointer constant [-Wzero-as-null-pointer-constant]
   osThreadNew(TempTask, NULL, NULL);
                               ^~~~
                               nullptr
-D:\stm32\ARM\ARMCLANG\Bin\..\include\stddef.h(84): note: expanded from macro 'NULL'
+C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stddef.h(84): note: expanded from macro 'NULL'
 #define NULL 0
              ^
 main.c(165): warning: zero as null pointer constant [-Wzero-as-null-pointer-constant]
   osThreadNew(UsartTask, &temperatureClass, NULL);
                                             ^~~~
                                             nullptr
-D:\stm32\ARM\ARMCLANG\Bin\..\include\stddef.h(84): note: expanded from macro 'NULL'
+C:\Keil_v5\ARM\ARMCLANG\Bin\..\include\stddef.h(84): note: expanded from macro 'NULL'
 #define NULL 0
              ^
 main.c(160): warning: unused variable 'a' [-Wunused-variable]
@@ -383,10 +355,545 @@ main.c(160): warning: unused variable 'a' [-Wunused-variable]
       ^
 61 warnings generated.
 compiling main.c...
+UsartUser.cpp(3): warning: In file included from...
+./UsartUser.h(4): warning: In file included from...
+./iUsart.h(6): warning: 'iUsart' has virtual functions but non-virtual destructor [-Wnon-virtual-dtor]
+class iUsart
+      ^
+UsartUser.cpp(3): warning: In file included from...
+./UsartUser.h(6): warning: 'UsartUser' has virtual functions but non-virtual destructor [-Wnon-virtual-dtor]
+class UsartUser : public iUsart
+      ^
+./UsartUser.h(11): warning: 'Send' overrides a member function but is not marked 'override' [-Wsuggest-override]
+                void Send(char* msg);
+                     ^
+./iUsart.h(8): note: overridden virtual function is here
+                virtual void Send(char* msg) = 0;
+                             ^
+UsartUser.cpp(5): warning: In file included from...
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f3xx.h(11): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+  *              - To use or not the peripheral<92>s drivers in application code(i.e. 
+                                               ^
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f3xx.h(12): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+  *                code will be based on direct access to peripheral<92>s registers 
+                                                                    ^
+UsartUser.cpp(5): warning: In file included from...
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f3xx.h(136): warning: In file included from...
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f303xc.h(144): warning: commas at the end of enumerator lists are incompatible with C++98 [-Wc++98-compat-pedantic]
+  FPU_IRQn                    = 81,      /*!< Floating point Interrupt                                          */
+                                  ^~
+UsartUser.cpp(19): warning: use of old-style cast [-Wold-style-cast]
+         RCC->AHBENR  |= RCC_AHBENR_GPIOCEN;            
+         ^~~
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f303xc.h(869): note: expanded from macro 'RCC'
+#define RCC                 ((RCC_TypeDef *) RCC_BASE)
+                             ^               ~~~~~~~~
+UsartUser.cpp(20): warning: use of old-style cast [-Wold-style-cast]
+         RCC->APB2ENR |= RCC_APB2ENR_USART1EN | RCC_APB2ENR_SYSCFGEN;       
+         ^~~
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f303xc.h(869): note: expanded from macro 'RCC'
+#define RCC                 ((RCC_TypeDef *) RCC_BASE)
+                             ^               ~~~~~~~~
+UsartUser.cpp(23): warning: use of old-style cast [-Wold-style-cast]
+         GPIOC->AFR[0]   = 0;
+         ^~~~~
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f303xc.h(876): note: expanded from macro 'GPIOC'
+#define GPIOC               ((GPIO_TypeDef *) GPIOC_BASE)
+                             ^                ~~~~~~~~~~
+UsartUser.cpp(26): warning: use of old-style cast [-Wold-style-cast]
+         GPIOC->OSPEEDR |= GPIO_OSPEEDER_OSPEEDR4_0 | GPIO_OSPEEDER_OSPEEDR4_1; 
+         ^~~~~
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f303xc.h(876): note: expanded from macro 'GPIOC'
+#define GPIOC               ((GPIO_TypeDef *) GPIOC_BASE)
+                             ^                ~~~~~~~~~~
+UsartUser.cpp(27): warning: use of old-style cast [-Wold-style-cast]
+         GPIOC->OTYPER  |= 0;                                                                          
+         ^~~~~
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f303xc.h(876): note: expanded from macro 'GPIOC'
+#define GPIOC               ((GPIO_TypeDef *) GPIOC_BASE)
+                             ^                ~~~~~~~~~~
+UsartUser.cpp(28): warning: use of old-style cast [-Wold-style-cast]
+         GPIOC->PUPDR   |= 0;                                                                           
+         ^~~~~
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f303xc.h(876): note: expanded from macro 'GPIOC'
+#define GPIOC               ((GPIO_TypeDef *) GPIOC_BASE)
+                             ^                ~~~~~~~~~~
+UsartUser.cpp(29): warning: use of old-style cast [-Wold-style-cast]
+         GPIOC->AFR[0]  |= (0x07<<(4*4));                                                                       //AF7 Configurations
+         ^~~~~
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f303xc.h(876): note: expanded from macro 'GPIOC'
+#define GPIOC               ((GPIO_TypeDef *) GPIOC_BASE)
+                             ^                ~~~~~~~~~~
+UsartUser.cpp(30): warning: use of old-style cast [-Wold-style-cast]
+         GPIOC->MODER   |= GPIO_MODER_MODER4_1;  
+         ^~~~~
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f303xc.h(876): note: expanded from macro 'GPIOC'
+#define GPIOC               ((GPIO_TypeDef *) GPIOC_BASE)
+                             ^                ~~~~~~~~~~
+UsartUser.cpp(33): warning: use of old-style cast [-Wold-style-cast]
+         GPIOC->OSPEEDR |= GPIO_OSPEEDER_OSPEEDR5_0 | GPIO_OSPEEDER_OSPEEDR5_1; 
+         ^~~~~
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f303xc.h(876): note: expanded from macro 'GPIOC'
+#define GPIOC               ((GPIO_TypeDef *) GPIOC_BASE)
+                             ^                ~~~~~~~~~~
+UsartUser.cpp(34): warning: use of old-style cast [-Wold-style-cast]
+         GPIOC->OTYPER  |= 0; 
+         ^~~~~
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f303xc.h(876): note: expanded from macro 'GPIOC'
+#define GPIOC               ((GPIO_TypeDef *) GPIOC_BASE)
+                             ^                ~~~~~~~~~~
+UsartUser.cpp(35): warning: use of old-style cast [-Wold-style-cast]
+         GPIOC->PUPDR   |= 0;
+         ^~~~~
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f303xc.h(876): note: expanded from macro 'GPIOC'
+#define GPIOC               ((GPIO_TypeDef *) GPIOC_BASE)
+                             ^                ~~~~~~~~~~
+UsartUser.cpp(36): warning: use of old-style cast [-Wold-style-cast]
+         GPIOC->AFR[0]  |= (0x07<<(4*5));                                                               //AF7 Configuration
+         ^~~~~
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f303xc.h(876): note: expanded from macro 'GPIOC'
+#define GPIOC               ((GPIO_TypeDef *) GPIOC_BASE)
+                             ^                ~~~~~~~~~~
+UsartUser.cpp(37): warning: use of old-style cast [-Wold-style-cast]
+         GPIOC->MODER   |= GPIO_MODER_MODER5_1;
+         ^~~~~
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f303xc.h(876): note: expanded from macro 'GPIOC'
+#define GPIOC               ((GPIO_TypeDef *) GPIOC_BASE)
+                             ^                ~~~~~~~~~~
+UsartUser.cpp(43): warning: use of old-style cast [-Wold-style-cast]
+         USART1->CR1  = 0;                                                                                                                   
+         ^~~~~~
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f303xc.h(850): note: expanded from macro 'USART1'
+#define USART1              ((USART_TypeDef *) USART1_BASE)
+                             ^                 ~~~~~~~~~~~
+UsartUser.cpp(44): warning: use of old-style cast [-Wold-style-cast]
+         USART1->CR2  = 0;                                                                                                                   
+         ^~~~~~
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f303xc.h(850): note: expanded from macro 'USART1'
+#define USART1              ((USART_TypeDef *) USART1_BASE)
+                             ^                 ~~~~~~~~~~~
+UsartUser.cpp(45): warning: use of old-style cast [-Wold-style-cast]
+         USART1->CR3  = 0;                                                                                                                   
+         ^~~~~~
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f303xc.h(850): note: expanded from macro 'USART1'
+#define USART1              ((USART_TypeDef *) USART1_BASE)
+                             ^                 ~~~~~~~~~~~
+UsartUser.cpp(46): warning: use of old-style cast [-Wold-style-cast]
+         USART1->BRR  = baudratio & 0xFFFF;                                                                                                  
+         ^~~~~~
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f303xc.h(850): note: expanded from macro 'USART1'
+#define USART1              ((USART_TypeDef *) USART1_BASE)
+                             ^                 ~~~~~~~~~~~
+UsartUser.cpp(47): warning: use of old-style cast [-Wold-style-cast]
+         USART1->CR1 |= (USART_CR1_TE | USART_CR1_RE);       //TX, RX Enable, Interrupts Enable
+         ^~~~~~
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f303xc.h(850): note: expanded from macro 'USART1'
+#define USART1              ((USART_TypeDef *) USART1_BASE)
+                             ^                 ~~~~~~~~~~~
+UsartUser.cpp(48): warning: use of old-style cast [-Wold-style-cast]
+         USART1->CR1 |=  USART_CR1_UE;  
+         ^~~~~~
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f303xc.h(850): note: expanded from macro 'USART1'
+#define USART1              ((USART_TypeDef *) USART1_BASE)
+                             ^                 ~~~~~~~~~~~
+UsartUser.cpp(55): warning: use of old-style cast [-Wold-style-cast]
+                while (!(USART1->ISR & USART_ISR_TC)); 
+                         ^~~~~~
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f303xc.h(850): note: expanded from macro 'USART1'
+#define USART1              ((USART_TypeDef *) USART1_BASE)
+                             ^                 ~~~~~~~~~~~
+UsartUser.cpp(56): warning: use of old-style cast [-Wold-style-cast]
+                USART1->TDR = msg[i];
+                ^~~~~~
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f303xc.h(850): note: expanded from macro 'USART1'
+#define USART1              ((USART_TypeDef *) USART1_BASE)
+                             ^                 ~~~~~~~~~~~
+UsartUser.cpp(59): warning: C++98 requires newline at end of file [-Wc++98-compat-pedantic]
+}
+ ^
+UsartUser.cpp(3): warning: In file included from...
+./UsartUser.h(4): warning: In file included from...
+./iUsart.h(6): warning: 'iUsart' has no out-of-line virtual method definitions; its vtable will be emitted in every translation unit [-Wweak-vtables]
+class iUsart
+      ^
+29 warnings generated.
+compiling UsartUser.cpp...
+DHT_sensor.cpp(1): warning: In file included from...
+./DHT_sensor.h(3): warning: In file included from...
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f303xc.h(144): warning: commas at the end of enumerator lists are incompatible with C++98 [-Wc++98-compat-pedantic]
+  FPU_IRQn                    = 81,      /*!< Floating point Interrupt                                          */
+                                  ^~
+DHT_sensor.cpp(1): warning: In file included from...
+./DHT_sensor.h(84): warning: C++98 requires newline at end of file [-Wc++98-compat-pedantic]
+}GPIO_InitTypeDef;
+                  ^
+DHT_sensor.cpp(6): warning: use of old-style cast [-Wold-style-cast]
+        RCC->AHBENR |= RCC_AHBENR_GPIODEN;
+        ^~~
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f303xc.h(869): note: expanded from macro 'RCC'
+#define RCC                 ((RCC_TypeDef *) RCC_BASE)
+                             ^               ~~~~~~~~
+DHT_sensor.cpp(12): warning: use of old-style cast [-Wold-style-cast]
+        GPIOD->OSPEEDR |= GPIO_OSPEEDER_OSPEEDR0;
+        ^~~~~
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f303xc.h(877): note: expanded from macro 'GPIOD'
+#define GPIOD               ((GPIO_TypeDef *) GPIOD_BASE)
+                             ^                ~~~~~~~~~~
+DHT_sensor.cpp(13): warning: use of old-style cast [-Wold-style-cast]
+        GPIOD->OTYPER  |= GPIO_OTYPER_OT_0;   
+        ^~~~~
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f303xc.h(877): note: expanded from macro 'GPIOD'
+#define GPIOD               ((GPIO_TypeDef *) GPIOD_BASE)
+                             ^                ~~~~~~~~~~
+DHT_sensor.cpp(14): warning: use of old-style cast [-Wold-style-cast]
+        GPIOD->PUPDR   |= 0;
+        ^~~~~
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f303xc.h(877): note: expanded from macro 'GPIOD'
+#define GPIOD               ((GPIO_TypeDef *) GPIOD_BASE)
+                             ^                ~~~~~~~~~~
+DHT_sensor.cpp(19): warning: use of old-style cast [-Wold-style-cast]
+        GPIOD->BRR  = GPIO_BRR_BR_0;
+        ^~~~~
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f303xc.h(877): note: expanded from macro 'GPIOD'
+#define GPIOD               ((GPIO_TypeDef *) GPIOD_BASE)
+                             ^                ~~~~~~~~~~
+DHT_sensor.cpp(24): warning: use of old-style cast [-Wold-style-cast]
+        GPIOD->BSRR = GPIO_BSRR_BS_0;
+        ^~~~~
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f303xc.h(877): note: expanded from macro 'GPIOD'
+#define GPIOD               ((GPIO_TypeDef *) GPIOD_BASE)
+                             ^                ~~~~~~~~~~
+DHT_sensor.cpp(30): warning: use of old-style cast [-Wold-style-cast]
+        GPIOD->MODER = GPIO_MODER_MODER0_0; 
+        ^~~~~
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f303xc.h(877): note: expanded from macro 'GPIOD'
+#define GPIOD               ((GPIO_TypeDef *) GPIOD_BASE)
+                             ^                ~~~~~~~~~~
+DHT_sensor.cpp(35): warning: use of old-style cast [-Wold-style-cast]
+        GPIOD->MODER = 0;
+        ^~~~~
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f303xc.h(877): note: expanded from macro 'GPIOD'
+#define GPIOD               ((GPIO_TypeDef *) GPIOD_BASE)
+                             ^                ~~~~~~~~~~
+DHT_sensor.cpp(42): warning: use of old-style cast [-Wold-style-cast]
+        if((GPIOD->IDR & 1) != 0) {
+            ^~~~~
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f303xc.h(877): note: expanded from macro 'GPIOD'
+#define GPIOD               ((GPIO_TypeDef *) GPIOD_BASE)
+                             ^                ~~~~~~~~~~
+DHT_sensor.cpp(127): warning: use of old-style cast [-Wold-style-cast]
+        if((uint8_t)(rawData[0] + rawData[1] + rawData[2] + rawData[3]) == rawData[4]) {
+           ^        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+DHT_sensor.cpp(128): warning: use of old-style cast [-Wold-style-cast]
+                data.hum = (float)rawData[0];
+                           ^      ~~~~~~~~~~
+DHT_sensor.cpp(129): warning: use of old-style cast [-Wold-style-cast]
+                data.temp = (float)rawData[2] + ((float)rawData[3] * 0.1);      
+                            ^      ~~~~~~~~~~
+DHT_sensor.cpp(129): warning: use of old-style cast [-Wold-style-cast]
+                data.temp = (float)rawData[2] + ((float)rawData[3] * 0.1);      
+                                                 ^      ~~~~~~~~~~
+DHT_sensor.cpp(129): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
+                data.temp = (float)rawData[2] + ((float)rawData[3] * 0.1);      
+                          ~ ~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+DHT_sensor.cpp(129): warning: implicit conversion increases floating-point precision: 'float' to 'double' [-Wdouble-promotion]
+                data.temp = (float)rawData[2] + ((float)rawData[3] * 0.1);      
+                                                 ^~~~~~~~~~~~~~~~~ ~
+DHT_sensor.cpp(129): warning: implicit conversion increases floating-point precision: 'float' to 'double' [-Wdouble-promotion]
+                data.temp = (float)rawData[2] + ((float)rawData[3] * 0.1);      
+                            ^~~~~~~~~~~~~~~~~ ~
+18 warnings generated.
+compiling DHT_sensor.cpp...
+DigitalFilter.cpp(3): warning: In file included from...
+./DigitalFilter.h(3): warning: In file included from...
+./iFilter.h(6): warning: 'iFilter' has virtual functions but non-virtual destructor [-Wnon-virtual-dtor]
+class iFilter 
+      ^
+./iFilter.h(10): warning: C++98 requires newline at end of file [-Wc++98-compat-pedantic]
+};
+  ^
+DigitalFilter.cpp(3): warning: In file included from...
+./DigitalFilter.h(12): warning: default member initializer for non-static data members is incompatible with C++98 [-Wc++98-compat]
+        double _oldValue = 0.0;
+                         ^
+./DigitalFilter.h(5): warning: 'DigitalFilter' has virtual functions but non-virtual destructor [-Wnon-virtual-dtor]
+class DigitalFilter : public iFilter
+      ^
+./DigitalFilter.h(9): warning: 'Filter' overrides a member function but is not marked 'override' [-Wsuggest-override]
+        double Filter(double newValue);
+               ^
+./iFilter.h(9): note: overridden virtual function is here
+   virtual double Filter(double newValue) = 0;
+                  ^
+DigitalFilter.cpp(3): warning: In file included from...
+./DigitalFilter.h(13): warning: C++98 requires newline at end of file [-Wc++98-compat-pedantic]
+};
+  ^
+DigitalFilter.cpp(6): warning: 'constexpr' specifier is incompatible with C++98 [-Wc++98-compat]
+constexpr int DampingTime = 10.0;
+^
+DigitalFilter.cpp(3): warning: In file included from...
+./DigitalFilter.h(11): warning: padding class 'DigitalFilter' with 4 bytes to align '_tau' [-Wpadded]
+        double _tau;
+               ^
+DigitalFilter.cpp(17): warning: comparing floating point with == or != is unsafe [-Wfloat-equal]
+    if (filteredValue != UINT32_MAX) {
+        ~~~~~~~~~~~~~ ^  ~~~~~~~~~~
+DigitalFilter.cpp(24): warning: C++98 requires newline at end of file [-Wc++98-compat-pedantic]
+}
+ ^
+DigitalFilter.cpp(3): warning: In file included from...
+./DigitalFilter.h(3): warning: In file included from...
+./iFilter.h(6): warning: 'iFilter' has no out-of-line virtual method definitions; its vtable will be emitted in every translation unit [-Wweak-vtables]
+class iFilter 
+      ^
+11 warnings generated.
+compiling DigitalFilter.cpp...
+TempDevice.cpp(1): warning: In file included from...
+./TempDevice.h(4): warning: In file included from...
+./DHT_sensor.h(3): warning: In file included from...
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f303xc.h(144): warning: commas at the end of enumerator lists are incompatible with C++98 [-Wc++98-compat-pedantic]
+  FPU_IRQn                    = 81,      /*!< Floating point Interrupt                                          */
+                                  ^~
+TempDevice.cpp(1): warning: In file included from...
+./TempDevice.h(4): warning: In file included from...
+./DHT_sensor.h(84): warning: C++98 requires newline at end of file [-Wc++98-compat-pedantic]
+}GPIO_InitTypeDef;
+                  ^
+TempDevice.cpp(1): warning: In file included from...
+./TempDevice.h(5): warning: In file included from...
+./DigitalFilter.h(3): warning: In file included from...
+./iFilter.h(6): warning: 'iFilter' has virtual functions but non-virtual destructor [-Wnon-virtual-dtor]
+class iFilter 
+      ^
+./iFilter.h(10): warning: C++98 requires newline at end of file [-Wc++98-compat-pedantic]
+};
+  ^
+TempDevice.cpp(1): warning: In file included from...
+./TempDevice.h(5): warning: In file included from...
+./DigitalFilter.h(12): warning: default member initializer for non-static data members is incompatible with C++98 [-Wc++98-compat]
+        double _oldValue = 0.0;
+                         ^
+./DigitalFilter.h(5): warning: 'DigitalFilter' has virtual functions but non-virtual destructor [-Wnon-virtual-dtor]
+class DigitalFilter : public iFilter
+      ^
+./DigitalFilter.h(9): warning: 'Filter' overrides a member function but is not marked 'override' [-Wsuggest-override]
+        double Filter(double newValue);
+               ^
+./iFilter.h(9): note: overridden virtual function is here
+   virtual double Filter(double newValue) = 0;
+                  ^
+TempDevice.cpp(1): warning: In file included from...
+./TempDevice.h(5): warning: In file included from...
+./DigitalFilter.h(13): warning: C++98 requires newline at end of file [-Wc++98-compat-pedantic]
+};
+  ^
+TempDevice.cpp(1): warning: In file included from...
+./TempDevice.h(16): warning: trailing return types are incompatible with C++98 [-Wc++98-compat]
+        auto getTemp() -> double
+                       ^
+./TempDevice.h(21): warning: trailing return types are incompatible with C++98 [-Wc++98-compat]
+        auto getHum() -> double
+                      ^
+./TempDevice.h(34): warning: C++98 requires newline at end of file [-Wc++98-compat-pedantic]
+};
+  ^
+TempDevice.cpp(15): warning: 'auto' type specifier is incompatible with C++98 [-Wc++98-compat]
+   const auto temp = (double)_sensor.DHT_getData().temp;
+         ^~~~
+TempDevice.cpp(15): warning: use of old-style cast [-Wold-style-cast]
+   const auto temp = (double)_sensor.DHT_getData().temp;
+                     ^       ~~~~~~~~~~~~~~~~~~~~~~~~~~
+TempDevice.cpp(24): warning: 'auto' type specifier is incompatible with C++98 [-Wc++98-compat]
+        const auto hum = (double)_sensor.DHT_getData().hum;
+              ^~~~
+TempDevice.cpp(24): warning: use of old-style cast [-Wold-style-cast]
+        const auto hum = (double)_sensor.DHT_getData().hum;
+                         ^       ~~~~~~~~~~~~~~~~~~~~~~~~~
+TempDevice.cpp(30): warning: C++98 requires newline at end of file [-Wc++98-compat-pedantic]
+}
+ ^
+16 warnings generated.
+compiling TempDevice.cpp...
+compiling rtx_evr.c...
+C:/Users/polin/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/RTOS2/RTX/Source/rtx_evflags.c(26): warning: In file included from...
+C:/Users/polin/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/RTOS2/RTX/Source/rtx_lib.h(31): warning: In file included from...
+C:/Users/polin/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/RTOS2/RTX/Source/rtx_core_c.h(33): warning: In file included from...
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f3xx.h(11): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+  *              - To use or not the peripheral<92>s drivers in application code(i.e. 
+                                               ^
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f3xx.h(12): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+  *                code will be based on direct access to peripheral<92>s registers 
+                                                                    ^
+2 warnings generated.
+compiling rtx_evflags.c...
+C:/Users/polin/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/RTOS2/RTX/Source/rtx_kernel.c(26): warning: In file included from...
+C:/Users/polin/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/RTOS2/RTX/Source/rtx_lib.h(31): warning: In file included from...
+C:/Users/polin/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/RTOS2/RTX/Source/rtx_core_c.h(33): warning: In file included from...
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f3xx.h(11): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+  *              - To use or not the peripheral<92>s drivers in application code(i.e. 
+                                               ^
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f3xx.h(12): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+  *                code will be based on direct access to peripheral<92>s registers 
+                                                                    ^
+2 warnings generated.
+compiling rtx_kernel.c...
+C:/Users/polin/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/RTOS2/RTX/Source/rtx_lib.c(29): warning: In file included from...
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f3xx.h(11): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+  *              - To use or not the peripheral<92>s drivers in application code(i.e. 
+                                               ^
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f3xx.h(12): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+  *                code will be based on direct access to peripheral<92>s registers 
+                                                                    ^
+C:/Users/polin/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/RTOS2/RTX/Source/rtx_lib.c(675): warning: '$' in identifier [-Wdollar-in-identifier-extension]
+extern void $Super$$_fp_init (void);
+            ^
+C:/Users/polin/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/RTOS2/RTX/Source/rtx_lib.c(675): warning: '$' in identifier [-Wdollar-in-identifier-extension]
+extern void $Super$$_fp_init (void);
+                  ^
+C:/Users/polin/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/RTOS2/RTX/Source/rtx_lib.c(675): warning: '$' in identifier [-Wdollar-in-identifier-extension]
+extern void $Super$$_fp_init (void);
+                   ^
+C:/Users/polin/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/RTOS2/RTX/Source/rtx_lib.c(677): warning: '$' in identifier [-Wdollar-in-identifier-extension]
+void $Sub$$_fp_init (void);
+     ^
+C:/Users/polin/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/RTOS2/RTX/Source/rtx_lib.c(677): warning: '$' in identifier [-Wdollar-in-identifier-extension]
+void $Sub$$_fp_init (void);
+         ^
+C:/Users/polin/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/RTOS2/RTX/Source/rtx_lib.c(677): warning: '$' in identifier [-Wdollar-in-identifier-extension]
+void $Sub$$_fp_init (void);
+          ^
+C:/Users/polin/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/RTOS2/RTX/Source/rtx_lib.c(678): warning: '$' in identifier [-Wdollar-in-identifier-extension]
+void $Sub$$_fp_init (void) {
+     ^
+C:/Users/polin/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/RTOS2/RTX/Source/rtx_lib.c(678): warning: '$' in identifier [-Wdollar-in-identifier-extension]
+void $Sub$$_fp_init (void) {
+         ^
+C:/Users/polin/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/RTOS2/RTX/Source/rtx_lib.c(678): warning: '$' in identifier [-Wdollar-in-identifier-extension]
+void $Sub$$_fp_init (void) {
+          ^
+C:/Users/polin/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/RTOS2/RTX/Source/rtx_lib.c(679): warning: '$' in identifier [-Wdollar-in-identifier-extension]
+  $Super$$_fp_init();
+  ^
+C:/Users/polin/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/RTOS2/RTX/Source/rtx_lib.c(679): warning: '$' in identifier [-Wdollar-in-identifier-extension]
+  $Super$$_fp_init();
+        ^
+C:/Users/polin/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/RTOS2/RTX/Source/rtx_lib.c(679): warning: '$' in identifier [-Wdollar-in-identifier-extension]
+  $Super$$_fp_init();
+         ^
+14 warnings generated.
+compiling rtx_lib.c...
+C:/Users/polin/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/RTOS2/RTX/Source/rtx_memory.c(26): warning: In file included from...
+C:/Users/polin/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/RTOS2/RTX/Source/rtx_lib.h(31): warning: In file included from...
+C:/Users/polin/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/RTOS2/RTX/Source/rtx_core_c.h(33): warning: In file included from...
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f3xx.h(11): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+  *              - To use or not the peripheral<92>s drivers in application code(i.e. 
+                                               ^
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f3xx.h(12): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+  *                code will be based on direct access to peripheral<92>s registers 
+                                                                    ^
+2 warnings generated.
+compiling rtx_memory.c...
+C:/Users/polin/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/RTOS2/RTX/Source/rtx_mempool.c(26): warning: In file included from...
+C:/Users/polin/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/RTOS2/RTX/Source/rtx_lib.h(31): warning: In file included from...
+C:/Users/polin/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/RTOS2/RTX/Source/rtx_core_c.h(33): warning: In file included from...
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f3xx.h(11): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+  *              - To use or not the peripheral<92>s drivers in application code(i.e. 
+                                               ^
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f3xx.h(12): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+  *                code will be based on direct access to peripheral<92>s registers 
+                                                                    ^
+2 warnings generated.
+compiling rtx_mempool.c...
+C:/Users/polin/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/RTOS2/RTX/Source/rtx_mutex.c(26): warning: In file included from...
+C:/Users/polin/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/RTOS2/RTX/Source/rtx_lib.h(31): warning: In file included from...
+C:/Users/polin/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/RTOS2/RTX/Source/rtx_core_c.h(33): warning: In file included from...
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f3xx.h(11): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+  *              - To use or not the peripheral<92>s drivers in application code(i.e. 
+                                               ^
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f3xx.h(12): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+  *                code will be based on direct access to peripheral<92>s registers 
+                                                                    ^
+2 warnings generated.
+compiling rtx_mutex.c...
+C:/Users/polin/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/RTOS2/RTX/Source/rtx_semaphore.c(26): warning: In file included from...
+C:/Users/polin/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/RTOS2/RTX/Source/rtx_lib.h(31): warning: In file included from...
+C:/Users/polin/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/RTOS2/RTX/Source/rtx_core_c.h(33): warning: In file included from...
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f3xx.h(11): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+  *              - To use or not the peripheral<92>s drivers in application code(i.e. 
+                                               ^
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f3xx.h(12): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+  *                code will be based on direct access to peripheral<92>s registers 
+                                                                    ^
+2 warnings generated.
+compiling rtx_semaphore.c...
+C:/Users/polin/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/RTOS2/RTX/Source/rtx_system.c(26): warning: In file included from...
+C:/Users/polin/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/RTOS2/RTX/Source/rtx_lib.h(31): warning: In file included from...
+C:/Users/polin/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/RTOS2/RTX/Source/rtx_core_c.h(33): warning: In file included from...
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f3xx.h(11): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+  *              - To use or not the peripheral<92>s drivers in application code(i.e. 
+                                               ^
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f3xx.h(12): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+  *                code will be based on direct access to peripheral<92>s registers 
+                                                                    ^
+2 warnings generated.
+compiling rtx_system.c...
+C:/Users/polin/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/RTOS2/RTX/Source/rtx_msgqueue.c(26): warning: In file included from...
+C:/Users/polin/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/RTOS2/RTX/Source/rtx_lib.h(31): warning: In file included from...
+C:/Users/polin/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/RTOS2/RTX/Source/rtx_core_c.h(33): warning: In file included from...
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f3xx.h(11): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+  *              - To use or not the peripheral<92>s drivers in application code(i.e. 
+                                               ^
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f3xx.h(12): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+  *                code will be based on direct access to peripheral<92>s registers 
+                                                                    ^
+2 warnings generated.
+compiling rtx_msgqueue.c...
+C:/Users/polin/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/RTOS2/RTX/Source/rtx_timer.c(26): warning: In file included from...
+C:/Users/polin/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/RTOS2/RTX/Source/rtx_lib.h(31): warning: In file included from...
+C:/Users/polin/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/RTOS2/RTX/Source/rtx_core_c.h(33): warning: In file included from...
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f3xx.h(11): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+  *              - To use or not the peripheral<92>s drivers in application code(i.e. 
+                                               ^
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f3xx.h(12): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+  *                code will be based on direct access to peripheral<92>s registers 
+                                                                    ^
+2 warnings generated.
+compiling rtx_timer.c...
+C:/Users/polin/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/RTOS2/Source/os_systick.c(29): warning: In file included from...
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f3xx.h(11): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+  *              - To use or not the peripheral<92>s drivers in application code(i.e. 
+                                               ^
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f3xx.h(12): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+  *                code will be based on direct access to peripheral<92>s registers 
+                                                                    ^
+2 warnings generated.
+compiling os_systick.c...
+C:/Users/polin/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/RTOS2/RTX/Source/rtx_thread.c(26): warning: In file included from...
+C:/Users/polin/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/RTOS2/RTX/Source/rtx_lib.h(31): warning: In file included from...
+C:/Users/polin/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/RTOS2/RTX/Source/rtx_core_c.h(33): warning: In file included from...
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f3xx.h(11): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+  *              - To use or not the peripheral<92>s drivers in application code(i.e. 
+                                               ^
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f3xx.h(12): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+  *                code will be based on direct access to peripheral<92>s registers 
+                                                                    ^
+2 warnings generated.
+compiling rtx_thread.c...
+compiling RTX_Config.c...
+RTE/Device/STM32F303VCTx/system_stm32f3xx.c(70): warning: In file included from...
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f3xx.h(11): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+  *              - To use or not the peripheral<92>s drivers in application code(i.e. 
+                                               ^
+C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include\stm32f3xx.h(12): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+  *                code will be based on direct access to peripheral<92>s registers 
+                                                                    ^
+2 warnings generated.
+compiling system_stm32f3xx.c...
 linking...
 Program Size: Code=23616 RO-data=860 RW-data=180 ZI-data=36344  
 FromELF: creating hex file...
-".\Objects\Qwerty.axf" - 0 Error(s), 77 Warning(s).
+".\Objects\Qwerty.axf" - 0 Error(s), 180 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -407,10 +914,10 @@ Package Vendor: Keil
 <h2>Collection of Component include folders:</h2>
   ./RTE/CMSIS
   ./RTE/_Target_1
-  D:/stm32/ARM/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include
-  D:/stm32/ARM/Packs/ARM/CMSIS/5.9.0/CMSIS/RTOS2/Include
-  D:/stm32/ARM/Packs/ARM/CMSIS/5.9.0/CMSIS/RTOS2/RTX/Include
-  D:/stm32/ARM/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include
+  C:/Users/polin/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include
+  C:/Users/polin/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/RTOS2/Include
+  C:/Users/polin/AppData/Local/Arm/Packs/ARM/CMSIS/5.9.0/CMSIS/RTOS2/RTX/Include
+  C:/Users/polin/AppData/Local/Arm/Packs/Keil/STM32F3xx_DFP/2.2.2/Drivers/CMSIS/Device/ST/STM32F3xx/Include
 
 <h2>Collection of Component Files used:</h2>
 
@@ -420,40 +927,40 @@ Package Vendor: Keil
    * Component: ARM::CMSIS:CORE:5.6.0
 
    * Component: ARM::CMSIS:RTOS2:Keil RTX5:Source:5.5.4
-      Include file:  CMSIS/RTOS2/RTX/Config/RTX_Config.h
-      Source file:   CMSIS/RTOS2/RTX/Template/Mutex.c
-      Source file:   CMSIS/RTOS2/RTX/Template/MsgQueue.c
-      Source file:   CMSIS/RTOS2/RTX/Template/Timer.c
-      Source file:   CMSIS/RTOS2/RTX/Template/MemPool.c
-      Source file:   CMSIS/RTOS2/RTX/Template/Semaphore.c
       Source file:   CMSIS/RTOS2/RTX/Template/svc_user.c
-      Source file:   CMSIS/RTOS2/RTX/Source/rtx_kernel.c
-      Source file:   CMSIS/RTOS2/RTX/Source/rtx_thread.c
-      Source file:   CMSIS/RTOS2/RTX/Source/rtx_timer.c
-      Source file:   CMSIS/RTOS2/RTX/Source/rtx_evflags.c
-      Source file:   CMSIS/RTOS2/RTX/Source/rtx_mutex.c
-      Source file:   CMSIS/RTOS2/RTX/Source/rtx_semaphore.c
-      Source file:   CMSIS/RTOS2/RTX/Source/rtx_mempool.c
-      Source file:   CMSIS/RTOS2/RTX/Config/RTX_Config.c
-      Source file:   CMSIS/RTOS2/RTX/Source/rtx_msgqueue.c
-      Include file:  CMSIS/RTOS2/RTX/Include/rtx_os.h
+      Source file:   CMSIS/RTOS2/RTX/Template/Semaphore.c
       Source file:   CMSIS/RTOS2/RTX/Template/Thread.c
+      Source file:   CMSIS/RTOS2/RTX/Source/rtx_thread.c
       Source file:   CMSIS/RTOS2/RTX/Source/rtx_delay.c
-      Source file:   CMSIS/RTOS2/RTX/Source/rtx_memory.c
-      Source file:   CMSIS/RTOS2/RTX/Source/rtx_system.c
+      Source file:   CMSIS/RTOS2/RTX/Source/rtx_timer.c
       Source file:   CMSIS/RTOS2/RTX/Template/Events.c
+      Source file:   CMSIS/RTOS2/RTX/Template/MemPool.c
+      Source file:   CMSIS/RTOS2/RTX/Template/MsgQueue.c
       Source file:   CMSIS/RTOS2/RTX/Template/main.c
-      Source file:   CMSIS/RTOS2/RTX/Source/rtx_lib.c
-      Source file:   CMSIS/RTOS2/RTX/Source/rtx_evr.c
+      Source file:   CMSIS/RTOS2/RTX/Source/rtx_kernel.c
+      Source file:   CMSIS/RTOS2/RTX/Config/RTX_Config.c
+      Include file:  CMSIS/RTOS2/RTX/Include/rtx_os.h
+      Source file:   CMSIS/RTOS2/RTX/Template/Mutex.c
+      Include file:  CMSIS/RTOS2/RTX/Config/RTX_Config.h
+      Source file:   CMSIS/RTOS2/RTX/Template/Timer.c
       Source file:   CMSIS/RTOS2/RTX/Source/GCC/irq_armv7m.S
+      Source file:   CMSIS/RTOS2/RTX/Source/rtx_mempool.c
+      Source file:   CMSIS/RTOS2/RTX/Source/rtx_lib.c
       Source file:   CMSIS/RTOS2/Source/os_systick.c
+      Source file:   CMSIS/RTOS2/RTX/Source/rtx_msgqueue.c
+      Source file:   CMSIS/RTOS2/RTX/Source/rtx_system.c
+      Source file:   CMSIS/RTOS2/RTX/Source/rtx_semaphore.c
+      Source file:   CMSIS/RTOS2/RTX/Source/rtx_evr.c
+      Source file:   CMSIS/RTOS2/RTX/Source/rtx_memory.c
+      Source file:   CMSIS/RTOS2/RTX/Source/rtx_mutex.c
+      Source file:   CMSIS/RTOS2/RTX/Source/rtx_evflags.c
 
    * Component: Keil.Standalone::Device:Startup:1.11.3
-      Source file:   Drivers/CMSIS/Device/ST/STM32F3xx/Source/Templates/system_stm32f3xx.c
+      Include file:  Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f3xx.h
       Source file:   MDK/Device/Source/ARM/STM32F3xx_OPT.s
       Source file:   Drivers/CMSIS/Device/ST/STM32F3xx/Source/Templates/arm/startup_stm32f303xc.s
-      Include file:  Drivers/CMSIS/Device/ST/STM32F3xx/Include/stm32f3xx.h
-Build Time Elapsed:  00:00:02
+      Source file:   Drivers/CMSIS/Device/ST/STM32F3xx/Source/Templates/system_stm32f3xx.c
+Build Time Elapsed:  00:00:14
 </pre>
 </body>
 </html>

@@ -4438,30 +4438,30 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-       886          8          0          0          0       4805   dht_sensor.o
-       302         16         24          8          0      12884   digitalfilter.o
+       886          8          0          0          0       4794   dht_sensor.o
+       302         16         24          8          0      12718   digitalfilter.o
        200         12          0          0          0        718   irq_armv7m.o
-      1192         24          4          0         80       5281   main.o
-       204          0          0          0          1       4255   os_systick.o
-        54          6          0          0          0        720   rtx_config.o
-       230          0          0          0          0       2704   rtx_delay.o
-       540          0          0          0          0      24862   rtx_evr.o
-      1458          0         11        164          0      14349   rtx_kernel.o
-       362          0        268          0      34621       7433   rtx_lib.o
-       710          0          0          0          0       2335   rtx_memory.o
-       478          0          0          0          0      12188   rtx_mempool.o
-      2900          0          0          0          0      14770   rtx_msgqueue.o
-      2214          0          0          0          0       8778   rtx_mutex.o
-       940         10          0          0          0       6084   rtx_system.o
-      3952          0          0          0          0      26204   rtx_thread.o
-       548          0          0          0          0       8785   rtx_timer.o
+      1192         24          4          0         80       5270   main.o
+       204          0          0          0          1       4339   os_systick.o
+        54          6          0          0          0        704   rtx_config.o
+       230          0          0          0          0       2768   rtx_delay.o
+       540          0          0          0          0      24926   rtx_evr.o
+      1458          0         11        164          0      14433   rtx_kernel.o
+       362          0        268          0      34621       7517   rtx_lib.o
+       710          0          0          0          0       2359   rtx_memory.o
+       478          0          0          0          0      12272   rtx_mempool.o
+      2900          0          0          0          0      14854   rtx_msgqueue.o
+      2214          0          0          0          0       8862   rtx_mutex.o
+       940         10          0          0          0       6168   rtx_system.o
+      3952          0          0          0          0      26288   rtx_thread.o
+       548          0          0          0          0       8869   rtx_timer.o
         64         26        392          0       1536        896   startup_stm32f303xc.o
-       290          0         16          4          0       2191   system_stm32f3xx.o
-       176          0          0          0          0       2839   tempdevice.o
-       386          0         24          0          0       3733   usartuser.o
+       290          0         16          4          0       2215   system_stm32f3xx.o
+       176          0          0          0          0       2836   tempdevice.o
+       386          0         24          0          0       3709   usartuser.o
 
     ----------------------------------------------------------------------
-     18306        102        772        180      36248     166814   Object Totals
+     18306        102        772        180      36248     167515   Object Totals
          0          0         32          0          0          0   (incl. Generated)
        220          0          1          4         10          0   (incl. Padding)
 
@@ -4551,8 +4551,8 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     23616        550        860        180      36344     168790   Grand Totals
-     23616        550        860        180      36344     168790   ELF Image Totals
+     23616        550        860        180      36344     169491   Grand Totals
+     23616        550        860        180      36344     169491   ELF Image Totals
      23616        550        860        180          0          0   ROM Totals
 
 ==============================================================================
