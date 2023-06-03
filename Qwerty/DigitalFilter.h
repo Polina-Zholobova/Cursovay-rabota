@@ -5,9 +5,10 @@
 class DigitalFilter : public iFilter
 {
 public:
-	DigitalFilter(double timeConstant);
-	double Filter(double newValue);
+	DigitalFilter(double R, double C, double tau);
+	double Filter(double* oldValues, uint16_t lenOldValues, double newValue);
 private:
-	double _tau;
-	double _oldValue = 0.0;
+	double R;
+	double C;
+	double tau;
 };

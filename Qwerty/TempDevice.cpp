@@ -4,27 +4,28 @@
 #define filtrC 		0.005l
 #define filtrTau 	1.0
 
-TempDevice::TempDevice(iFilter& tempFilter, iFilter& humFilter) :
-                                                              _humFilter(humFilter),
-                                                              _tempFilter(tempFilter)
+
+
+TempDevice::TempDevice()
 {
+	filter = new DigitalFilter(filtrR, filtrC, filtrTau);
+	oldValueTemp = new double(1);
+	oldValueHum = new double(1);
+	oldValueTemp[0] = 0;
+	oldValueHum[0] = 0;
 }
 
-void TempDevice::updateTemp()
+double TempDevice::getTemp()
 {
-   const auto temp = (double)_sensor.DHT_getData().temp;
-	//core_util_critical_section_enter();
-	__disable_irq();
-   _temperatureValue =  _tempFilter.Filter(temp);
-	__enable_irq();
+	oldValueTemp[0] = newValueTemp;
+	newValueTemp 		= (double)sensor.DHT_getData().temp;
+	//return newValueTemp;
+	return filter->Filter(oldValueTemp, 1, newValueTemp);
 }
 
-void TempDevice::updateHum()
+double TempDevice::getHum()
 {
-	const auto hum = (double)_sensor.DHT_getData().hum;
-	//core_util_critical_section_enter();
-	__disable_irq();
-	_humidityValue = _humFilter.Filter(hum);
-	//core_util_critical_section_exit();
-	__enable_irq();
+	oldValueHum[0] = newValueHum;
+	newValueHum 		= (double)sensor.DHT_getData().hum;
+	return filter->Filter(oldValueHum, 1, newValueHum);
 }
